@@ -9,8 +9,8 @@ module "ubuntuvm" {
     ssh_port="22"
 }
 
-module "snapshots" {
-    source = "./modules/snapshots"
+module "imagecreation" {
+    source = "./modules/imagecreation"
     
     resourcegroup_name=module.ubuntuvm.resourcegroup_name
     location=module.ubuntuvm.location
