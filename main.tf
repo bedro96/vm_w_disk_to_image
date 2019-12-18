@@ -11,9 +11,10 @@ module "ubuntuvm" {
 
 module "snapshots" {
     source = "./modules/snapshots"
-
+    
     resourcegroup_name=module.ubuntuvm.resourcegroup_name
-    os_source_uri=module.ubuntuvm.os_managed_disk_id
-    data_source_uri=module.ubuntuvm.data_managed_disk_id
-    location="southeastasia"
+    location=module.ubuntuvm.location
+    os_managed_disk_id=module.ubuntuvm.os_managed_disk_id
+    data_managed_disk_id=module.ubuntuvm.data_managed_disk_id
+    managed_image_name="imgtestwithdatadisk20191217"
 }

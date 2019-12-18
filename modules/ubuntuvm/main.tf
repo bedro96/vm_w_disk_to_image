@@ -198,7 +198,7 @@ resource "azurerm_role_assignment" "terraformrg" {
   principal_id       = "${lookup(azurerm_virtual_machine.ubuntu1604.identity[0], "principal_id")}"
 }
 
-resource "null_resource" "example_provisioner" {
+resource "null_resource" "provisioner" {
   depends_on = [azurerm_virtual_machine.ubuntu1604]
   connection {
     type = "ssh"
@@ -223,36 +223,7 @@ resource "null_resource" "example_provisioner" {
   }
   
 }
-# resource "azurerm_snapshot" "terraformsnapshot" {
-#   name                = "ubuntu1604-osdisk-snapshot"
-#   location            = "${azurerm_resource_group.terraformrg.location}"
-#   resource_group_name = "${azurerm_resource_group.terraformrg.name}"
-#   create_option       = "Copy"
-#   source_uri          = "${azurerm_virtual_machine.ubuntu1604.storage_os_disk[0].managed_disk_id}"
-# }
 
-# resource "azurerm_shared_image_gallery" "terraformgallery" {
-#   name                = "terraformgallery"
-#   location            = "${azurerm_resource_group.terraformrg.location}"
-#   resource_group_name = "${azurerm_resource_group.terraformrg.name}"
-#   description         = "Shared images and things."
-# }
-
-# resource "azurerm_shared_image" "specialized-image" {
-#   name                = "specialized-image"
-#   gallery_name        = "${azurerm_shared_image_gallery.kukoImage2.name}"
-#   location            = "${azurerm_resource_group.terraformrg.location}"
-#   resource_group_name = "${azurerm_resource_group.terraformrg.name}"
-#   os_type             = "Linux"
-#   osState             = "Specialized"
-
-#   identifier {
-#     publisher = "PublisherName"
-#     offer     = "OfferName"
-#     sku       = "ExampleSku"
-#   }
-# }
-  // copy our example script to the server
 output "public_ip_address" {
     value = "${azurerm_public_ip.terraformpip.ip_address}"
 }
@@ -264,4 +235,7 @@ output "data_managed_disk_id" {
 }
 output "resourcegroup_name" {
     value = "${azurerm_resource_group.terraformrg.name}"
+}
+output "location" {
+    value = "${azurerm_resource_group.terraformrg.location}"
 }
