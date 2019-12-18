@@ -43,7 +43,7 @@ resource "azurerm_image" "packer-img-w-datadisk" {
     data_disk {
         lun = 0
         caching = "ReadWrite"
-        managed_disk_id = "${var.os_managed_disk_id}"
+        managed_disk_id = "${var.data_managed_disk_id}"
         size_gb = 250
     }
 }
