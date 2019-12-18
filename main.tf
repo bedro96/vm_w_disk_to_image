@@ -12,6 +12,8 @@ module "ubuntuvm" {
 module "snapshots" {
     source = "./modules/snapshots"
 
-    resourcegroup_name="terraformvmrg2"
+    resourcegroup_name=module.ubuntuvm.resourcegroup_name
+    os_source_uri=module.ubuntuvm.os_managed_disk_id
+    data_source_uri=module.ubuntuvm.data_managed_disk_id
     location="southeastasia"
 }

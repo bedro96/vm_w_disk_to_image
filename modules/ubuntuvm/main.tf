@@ -262,3 +262,6 @@ output "os_managed_disk_id" {
 output "data_managed_disk_id" {
     value = "${azurerm_virtual_machine.ubuntu1604.storage_data_disk[0].managed_disk_id}"
 }
+output "resourcegroup_name" {
+    value = "${azurerm_resource_group.terraformrg.name}"
+}
