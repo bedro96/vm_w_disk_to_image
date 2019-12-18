@@ -18,7 +18,6 @@ sudo mount /dev/sdc1 /logs
 # sudo -i blkid
 # /dev/sdc1: UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e TYPE=ext4
 sdc_uuid=$(sudo -i blkid | grep ^/dev/sdc1 | awk -F '"' '{print $2}')
-# sdc_uuid=`sudo -i blkid | grep ^/dev/sdc1 | awk -F '' '{print $2}'`
 # UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /logs   ext4   defaults   1   2
 inputstring="UUID=$sdc_uuid /logs ext4 defaults 1 2"
 echo $inputstring | sudo tee -a /etc/fstab
