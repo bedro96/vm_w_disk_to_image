@@ -24,6 +24,3 @@ variable "vm_size" {
   description = "The vm SKU"
   default = "Standard_B2ms"
 }
-variable "image_id" {
-  description = "id of generalized manged image"
-}

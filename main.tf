@@ -8,3 +8,10 @@ module "ubuntuvm" {
     ssh_password="CitrixOnAzure1!"
     ssh_port="22"
 }
+
+module "snapshots" {
+    source = "./modules/snapshots"
+
+    resourcegroup_name="terraformvmrg2"
+    location="southeastasia"
+}
