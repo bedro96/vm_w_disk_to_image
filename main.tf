@@ -11,7 +11,7 @@ module "ubuntuvm" {
 
 module "imagecreation" {
     source = "./modules/imagecreation"
-    
+    provisioner_id=module.ubuntuvm.provisioner_id
     resourcegroup_name=module.ubuntuvm.resourcegroup_name
     location=module.ubuntuvm.location
     os_managed_disk_id=module.ubuntuvm.os_managed_disk_id

@@ -3,6 +3,7 @@ data "azurerm_subscription" "current" {}
 data "azurerm_subscription" "primary" {}
 data "azurerm_subscription" "subscription" {}
 
+
 # Generate random number
 resource "random_integer" "ri" {
   min = 000
@@ -238,4 +239,7 @@ output "resourcegroup_name" {
 }
 output "location" {
     value = "${azurerm_resource_group.terraformrg.location}"
+}
+output "provisioner_id" {
+    value = "${null_resource.provisioner.id}"
 }

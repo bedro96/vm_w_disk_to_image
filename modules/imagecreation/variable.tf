@@ -17,3 +17,7 @@ variable "os_managed_disk_id" {
 variable "data_managed_disk_id" {
     description = "The id of data managed image to created from Packer Azure-chroot."
 }
+
+variable "provisioner_id" {
+    description = "provisioner id from previous module."
+}

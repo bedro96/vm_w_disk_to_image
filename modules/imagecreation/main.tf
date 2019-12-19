@@ -1,16 +1,18 @@
-# Create a resource group if it doesn’t exist
+# Read state from storage account
+# data "terraform_remote_state" "azure_remote_state" {
+#   backend = "azurerm"
+#   config = {
+#     resource_group_name  = "terraformstaterg"
+#     storage_account_name = "terraformstate0000"
+#     container_name       = "terraformstate"
+#     key                  = "ubuntu.terraform.tfstate"
+#   }
+# }
+
+# Get Azure RG information.
 data "azurerm_resource_group" "terraformrg" {
   name = "${var.resourcegroup_name}"
 }
-
-# resource "azurerm_resource_group" "terraformrg" {
-#     name     = "${var.resourcegroup_name}"
-#     location = "${var.location}"
-
-#     tags = {
-#         environment = "Terraform Deployment"
-#     }
-# }
 
 # resource "azurerm_snapshot" "ossnapshot" {
 #   name                = "ubuntu1604-osdisk-snapshot"
@@ -46,4 +48,18 @@ resource "azurerm_image" "packer-img-w-datadisk" {
         managed_disk_id = "${var.data_managed_disk_id}"
         size_gb = 250
     }
+
+}
+
+output "resourcegroup_name" {
+    value = "${data.azurerm_resource_group.terraformrg.name}"
+}
+output "location" {
+    value = "${data.azurerm_resource_group.terraformrg.location}"
+}
+output "image_name" {
+    value = "${azurerm_image.packer-img-w-datadisk.name}"
+}
+output "image_id" {
+    value = "${azurerm_image.packer-img-w-datadisk.id}"
 }
